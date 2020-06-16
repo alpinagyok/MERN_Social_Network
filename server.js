@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const passport = require("passport");
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
@@ -8,9 +8,9 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-// Body parser middleware  ?? is it needed in newer version?
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// Body parser middleware is not needed. express has it
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // DB Config
 const db = process.env.MONGODB_URL || require("./config/keys").mongoURI;
@@ -24,7 +24,13 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello World"));
+// Passport Middleware
+app.use(passport.initialize());
+
+// Passport Config
+// we use strategies with passport (local strategy/oauth strategy/...)
+// this is JWT strategy
+require("./config/passport")(passport); // passing passport as param
 
 // Use Routes
 app.use("/api/users", users);
