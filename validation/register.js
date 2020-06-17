@@ -18,12 +18,13 @@ module.exports = validateRegisterInput = (data) => {
     errors.name = "Name field is required";
   }
 
-  if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
-  }
-
   if (!Validator.isEmail(data.email)) {
     errors.email = "Email is invalid";
+  }
+
+  // isEmail will also check for emptiness
+  if (Validator.isEmpty(data.email)) {
+    errors.email = "Email field is required";
   }
 
   if (Validator.isEmpty(data.password)) {
