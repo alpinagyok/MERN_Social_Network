@@ -18,6 +18,12 @@ class Register extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   // runs when component receives new properties
   componentWillReceiveProps(nextProps) {
     // we get errors from redux state, gets put into props with mapStateToProps
