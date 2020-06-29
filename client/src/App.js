@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom"; // browserrouter allows to press 'back' and get prev route etc.?
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"; // browserrouter allows to press 'back' and get prev route etc.?
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { clearCurrentProfile } from "./actions/profileActions";
+
 import { Provider } from "react-redux";
 import store from "./store";
+
+import PrivateRoute from "./components/common/PrivateRoute";
 
 import "./App.css";
 
@@ -50,7 +53,10 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              {/* without switch there will be strange redirection issues */}
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
             </div>
             <Footer />
           </div>
