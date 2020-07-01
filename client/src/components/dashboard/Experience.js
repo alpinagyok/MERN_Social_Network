@@ -5,8 +5,8 @@ import Moment from "react-moment";
 import { deleteExperience } from "../../actions/profileActions";
 
 class Experience extends Component {
-  onDeleteClick = (id) => {
-    this.props.deleteExperience(id);
+  onDeleteClick = (e) => {
+    this.props.deleteExperience(e.target.dataset.id);
   };
 
   render() {
@@ -24,8 +24,8 @@ class Experience extends Component {
         </td>
         <td>
           <button
-            // seems like i need to bind here 100%
-            onClick={this.onDeleteClick.bind(this, exp._id)}
+            data-id={exp._id} // html attribute
+            onClick={this.onDeleteClick}
             className="btn btn-danger"
           >
             Delete
