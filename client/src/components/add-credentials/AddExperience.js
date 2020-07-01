@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import PropTypes from "prop-types";
+import { addExperience } from "../../actions/profileActions";
 
 class AddExperience extends Component {
   state = {
@@ -12,7 +13,7 @@ class AddExperience extends Component {
     location: "",
     from: "",
     to: "",
-    current: "",
+    current: false,
     description: "",
     errors: {},
     disabled: false,
@@ -29,14 +30,31 @@ class AddExperience extends Component {
     });
   };
 
+  // instead of this can just take errors from props. why this way??
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
-    console.log("submit");
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description,
+    };
+
+    this.props.addExperience(expData, this.props.history);
   };
 
   render() {
-    const { errors } = this.state;
+    const { errors } = this.state; // or just this.props
 
     return (
       <div className="add-experience">
@@ -129,6 +147,7 @@ class AddExperience extends Component {
 AddExperience.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  addExperience: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -136,4 +155,6 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, {})(withRouter(AddExperience));
+export default connect(mapStateToProps, { addExperience })(
+  withRouter(AddExperience)
+);
