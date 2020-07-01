@@ -6,6 +6,9 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import PropTypes from "prop-types";
 import { addExperience } from "../../actions/profileActions";
 
+// BUGS: can be not current but without "to" date
+// can be current with "to" date
+
 class AddExperience extends Component {
   state = {
     company: "",
