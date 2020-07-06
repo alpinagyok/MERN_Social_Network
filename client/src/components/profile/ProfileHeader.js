@@ -22,17 +22,20 @@ class ProfileHeader extends Component {
               <h1 className="display-4 text-center">{profile.user.name}</h1>
               <p className="lead text-center">
                 {profile.status}{" "}
-                {isEmpty(profile.company) ? null : <p>at {profile.company}</p>}
+                {isEmpty(profile.company) ? null : `at ${profile.company}`}
               </p>
               <p>
-                {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
+                {/* <p>{profile.location}</p> */}
+                {isEmpty(profile.location) ? null : "{profile.location}"}
               </p>
               <p>
                 {isEmpty(profile.website) ? null : (
                   <a
                     className="text-white p-2"
-                    href={profile.website}
+                    // this works weirdly, not entirely sure
+                    href={`http://${profile.website}`}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fas fa-globe fa-2x"></i>
                   </a>
@@ -42,6 +45,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.twitter}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-twitter fa-2x"></i>
                   </a>
@@ -51,6 +55,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.facebook}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-facebook fa-2x"></i>
                   </a>
@@ -60,6 +65,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.linkedin}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-linkedin fa-2x"></i>
                   </a>
@@ -69,6 +75,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.youtube}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-youtube fa-2x"></i>
                   </a>
@@ -78,6 +85,7 @@ class ProfileHeader extends Component {
                     className="text-white p-2"
                     href={profile.social.instagram}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <i className="fab fa-instagram fa-2x"></i>
                   </a>
