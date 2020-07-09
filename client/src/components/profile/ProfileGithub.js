@@ -8,8 +8,8 @@ class ProfileGithub extends Component {
   // myRef = React.createRef();
 
   state = {
-    clientId: githubClientId,
-    clientSecret: githubClientSecret,
+    clientId: githubClientId || process.env.GITHUB_CLIEND_ID,
+    clientSecret: githubClientSecret || process.env.GITHUB_CLIEND_SECRET,
     count: 5,
     sort: "created: asc",
     repos: [],
