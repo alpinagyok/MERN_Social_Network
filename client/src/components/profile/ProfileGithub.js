@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { githubClientId, githubClientSecret } from "../../config/keys";
 // import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -8,8 +7,8 @@ class ProfileGithub extends Component {
   // myRef = React.createRef();
 
   state = {
-    clientId: githubClientId || process.env.GITHUB_CLIEND_ID,
-    clientSecret: githubClientSecret || process.env.GITHUB_CLIEND_SECRET,
+    clientId: process.env.REACT_APP_GITHUB_CLIEND_ID,
+    clientSecret: process.env.REACT_APP_GITHUB_CLIEND_SECRET,
     count: 5,
     sort: "created: asc",
     repos: [],
