@@ -2,6 +2,8 @@
 
 ## This project was made by following a turorial and adding some of my own changes. Not meant to be a portfolio project.
 
+![Screenshot](https://res.cloudinary.com/dwwoxasih/image/upload/v1598794779/w_ysxhzc.png)
+
 [Live Vesrion](https://mern-social-learning.herokuapp.com/)
 
 This is a very simple website project made with NodeJS (Express) + React (Redux) + MongoDB. The user can add and delete items from list.
